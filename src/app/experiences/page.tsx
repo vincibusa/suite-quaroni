@@ -1,5 +1,6 @@
 import { Metadata } from "next";
 import ExperienceCard from "@/components/ui/ExperienceCard";
+import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "Explore Palermo - Experiences",
@@ -78,7 +79,7 @@ export default function ExperiencesPage() {
           <div className="max-w-4xl mx-auto space-y-4 md:space-y-6">
             {/* Breadcrumb */}
             <nav className="flex items-center justify-center space-x-2 text-xs md:text-sm text-gray-300 mb-4 md:mb-6 fade-in-up">
-              <a href="/" className="hover:text-white transition-colors">Home</a>
+              <Link href="/" className="hover:text-white transition-colors">Home</Link>
               <span className="material-symbols-outlined text-xs">chevron_right</span>
               <span className="text-white">Experiences</span>
             </nav>

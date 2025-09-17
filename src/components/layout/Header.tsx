@@ -11,7 +11,7 @@ export default function Header({ className = "" }: HeaderProps) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const headerClasses = "fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-sm shadow-sm";
-  const containerClasses = " flex items-center justify-between glassmorphism px-6 py-5 shadow-sm w-full";
+  const containerClasses = "flex items-center justify-between glassmorphism px-6 py-5 shadow-sm w-full";
   const textColor = "text-text-primary";
   const linkColor = "text-text-primary hover:text-primary-color";
 

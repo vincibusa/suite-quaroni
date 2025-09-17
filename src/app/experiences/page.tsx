@@ -62,64 +62,108 @@ const experiences = {
 
 export default function ExperiencesPage() {
   return (
-    <div className="relative min-h-screen w-full bg-cover bg-center bg-fixed"
-         style={{fontFamily: '"Plus Jakarta Sans", "Noto Sans", sans-serif'}}>
+    <div className="relative min-h-screen w-full">
       
-      {/* Overlay */}
-      <div className="absolute inset-0 bg-black/30 backdrop-blur-sm" />
-      
-      <div className="relative z-10 flex justify-center py-16 px-4 sm:px-6 lg:px-8 bg-white">
-          <div className="w-full max-w-7xl flex flex-col items-center">
-            {/* Page Title */}
-            <div className="text-center mb-12">
-              <h1 className="text-5xl font-extrabold leading-tight text-black tracking-tight">
-                Explore Palermo
-              </h1>
-              <p className="mt-4 max-w-3xl text-lg text-black">
-                Discover the rich tapestry of Palermo's art, history, culture, and culinary delights with our curated activities. Each experience is designed to immerse you in the heart of this vibrant city.
-              </p>
+      {/* Modern Hero Section */}
+      <section className="relative h-[60vh] md:h-[70vh] min-h-[400px] md:min-h-[500px] overflow-hidden">
+        {/* Background with Gradient Overlay */}
+        <div className="absolute inset-0">
+          <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-blue-900 to-slate-900"></div>
+          <div className="absolute inset-0 bg-dot-pattern opacity-20"></div>
+          <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/20"></div>
+        </div>
+        
+        {/* Content */}
+        <div className="relative z-10 flex h-full flex-col items-center justify-center text-center text-white px-4">
+          <div className="max-w-4xl mx-auto space-y-4 md:space-y-6">
+            {/* Breadcrumb */}
+            <nav className="flex items-center justify-center space-x-2 text-xs md:text-sm text-gray-300 mb-4 md:mb-6 fade-in-up">
+              <a href="/" className="hover:text-white transition-colors">Home</a>
+              <span className="material-symbols-outlined text-xs">chevron_right</span>
+              <span className="text-white">Experiences</span>
+            </nav>
+            
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-extrabold leading-tight tracking-tighter fade-in-up">
+              Discover
+              <span className="block text-gradient bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-cyan-300">
+                Palermo's Soul
+              </span>
+            </h1>
+            <p className="max-w-3xl mx-auto text-base sm:text-lg md:text-xl lg:text-2xl font-light leading-relaxed text-gray-200 fade-in-up-delay-1 px-2">
+              Immerse yourself in the rich tapestry of Palermo's art, history, culture, and culinary delights with our curated experiences. Each activity is designed to connect you with the authentic heart of this vibrant city.
+            </p>
+            
+            {/* Quick Stats */}
+            <div className="flex flex-col space-y-3 sm:flex-row sm:space-y-0 sm:space-x-4 md:space-x-8 items-center justify-center mt-6 md:mt-8 fade-in-up-delay-2">
+              <div className="flex items-center space-x-2">
+                <span className="material-symbols-outlined text-blue-400 text-lg">palette</span>
+                <span className="font-semibold text-sm md:text-base">Art & History</span>
+              </div>
+              <div className="flex items-center space-x-2">
+                <span className="material-symbols-outlined text-green-400 text-lg">restaurant</span>
+                <span className="font-semibold text-sm md:text-base">Food & Wine</span>
+              </div>
+              <div className="flex items-center space-x-2">
+                <span className="material-symbols-outlined text-yellow-400 text-lg">celebration</span>
+                <span className="font-semibold text-sm md:text-base">Culture & Traditions</span>
+              </div>
             </div>
+          </div>
+        </div>
+      </section>
 
-            {/* Experience Categories */}
-            <div className="w-full space-y-16">
-              {Object.entries(experiences).map(([category, items]) => (
-                <section key={category}>
-                  <h2 className="text-3xl font-bold tracking-tight text-black px-4 pb-8">
-                    {category}
-                  </h2>
-                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-                    {items.map((experience, index) => (
-                      <ExperienceCard
-                        key={index}
-                        title={experience.title}
-                        description={experience.description}
-                        image={experience.image}
-                        category={category}
-                      />
-                    ))}
-                  </div>
-                </section>
-              ))}
-            </div>
+      {/* Main Content */}
+      <section className="py-8 md:py-16 bg-gray-50">
+        <div className="container mx-auto px-4 md:px-6">
+          {/* Section Header */}
+          <div className="text-center mb-8 md:mb-12">
+            <h2 className="text-2xl md:text-3xl font-bold text-text-primary mb-4">
+              Curated Experiences
+            </h2>
+            <p className="text-text-secondary text-base md:text-lg max-w-2xl mx-auto leading-relaxed">
+              Choose from our carefully selected activities that showcase the best of Palermo's rich heritage and vibrant contemporary culture.
+            </p>
+          </div>
 
-            {/* Call to Action */}
-            <div className="mt-16 text-center">
-              <div className="bg-white/90 backdrop-blur-sm rounded-2xl p-8 max-w-2xl mx-auto">
-                <h2 className="text-2xl font-bold text-black mb-4">
-                  Ready to Explore Palermo?
+          {/* Experience Categories */}
+          <div className="w-full space-y-16">
+            {Object.entries(experiences).map(([category, items]) => (
+              <section key={category} className="fade-in-up">
+                <h2 className="text-3xl font-bold text-text-primary mb-8 text-center">
+                  {category}
                 </h2>
-                <p className="text-black mb-6">
-                  Contact us to book these experiences or get personalized recommendations for your stay.
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+                  {items.map((experience, index) => (
+                    <ExperienceCard
+                      key={index}
+                      title={experience.title}
+                      description={experience.description}
+                      image={experience.image}
+                      category={category}
+                    />
+                  ))}
+                </div>
+              </section>
+            ))}
+
+            {/* Additional Info */}
+            <div className="text-center mt-12 md:mt-16">
+              <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-6 md:p-8 max-w-2xl mx-auto shadow-sm">
+                <h3 className="text-lg md:text-xl font-bold text-text-primary mb-3">
+                  Need Help Choosing?
+                </h3>
+                <p className="text-text-secondary mb-4 md:mb-6 text-sm md:text-base">
+                  Our expert team is here to help you find the perfect experiences for your stay in Palermo. Contact us for personalized recommendations.
                 </p>
-                <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                  <a href="/contact" className="inline-block">
-                    <button className="bg-primary text-white px-6 py-3 rounded-xl font-semibold hover:bg-opacity-90 transition-all">
+                <div className="flex flex-col sm:flex-row gap-3 md:gap-4 justify-center">
+                  <a href="/contact">
+                    <button className="w-full sm:w-auto bg-primary text-white px-4 md:px-6 py-2 md:py-3 rounded-xl font-semibold hover:bg-opacity-90 transition-all text-sm md:text-base">
                       Contact Us
                     </button>
                   </a>
-                  <a href="/rooms" className="inline-block">
-                    <button className="border border-primary text-primary px-6 py-3 rounded-xl font-semibold hover:bg-primary/10 transition-all">
-                      Book Your Stay
+                  <a href="tel:+39021234567">
+                    <button className="w-full sm:w-auto border border-primary text-primary px-4 md:px-6 py-2 md:py-3 rounded-xl font-semibold hover:bg-primary/10 transition-all text-sm md:text-base">
+                      Call Now
                     </button>
                   </a>
                 </div>
@@ -127,6 +171,8 @@ export default function ExperiencesPage() {
             </div>
           </div>
         </div>
+    </section>
     </div>
+    
   );
 }

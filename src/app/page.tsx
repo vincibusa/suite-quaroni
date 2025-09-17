@@ -34,7 +34,9 @@ const featuredRooms = [
     amenities: ["King-size bed", "Private terrace", "Garden views", "Luxury bathroom"]
   }
 ];
-
+ 
+const heroBackground = "https://lh3.googleusercontent.com/aida-public/AB6AXuD7pg-7TsuO_BE07_1U-tE08RdPhxZqsTNpE2UgdjOe6Yn-qk_svcWdgPaCYkpSWE4VCOmcBWjVZ37K5hT7jksHCXRnYKp0x-YJ5rsH_LAojfjj2pjKSZPPUbRPyBsVhjmcGewRznStg-16OIHxAlS5XDUMI9XagcaH3ksTDhKm-1Hk_62UJyGXnLQUuFhL61Co2qwk6J1LlJLRxevT0BSmnjKwL4-2a4wSl9budZ9CVXFFlp6C6kfNhyVcUnIBAmQMcA7qH3TWPJ4J";
+ 
 const stats = [
   { number: 1200, label: "Happy Guests", suffix: "+" },
   { number: 98, label: "Satisfaction Rate", suffix: "%" },
@@ -56,8 +58,8 @@ export default function Home() {
       <section className="relative h-screen min-h-[700px] w-full overflow-hidden">
         {/* Background with Parallax Effect */}
         <div className="absolute inset-0 hero-parallax">
-          <div className="absolute inset-0 bg-cover bg-center bg-fixed" 
-               style={{backgroundImage: 'url("https://lh3.googleusercontent.com/aida-public/AB6AXuD7pg-7TsuO_BE07_1U-tE08RdPhxZqsTNpE2UgdjOe6Yn-qk_svcWdgPaCYkpSWE4VCOmcBWjVZ37K5hT7jksHCXRnYKp0x-YJ5rsH_LAojfjj2pjKSZPPUbRPyBsVhjmcGewRznStg-16OIHxAlS5XDUMI9XagcaH3ksTDhKm-1Hk_62UJyGXnLQUuFhL61Co2qwk6J1LlJLRxevT0BSmnjKwL4-2a4wSl9budZ9CVXFFlp6C6kfNhyVcUnIBAmQMcA7qH3TWPJ4J")'}}>
+          <div className="absolute inset-0 bg-cover bg-center bg-fixed"
+               style={{backgroundImage: `url(${heroBackground})`}}>
           </div>
           <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent"></div>
         </div>
@@ -91,12 +93,7 @@ export default function Home() {
             </div>
           </div>
           
-          {/* Floating Elements */}
-          <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 scroll-indicator">
-            <div className="w-6 h-10 border-2 border-white/50 rounded-full flex justify-center">
-              <div className="w-1 h-3 bg-white rounded-full mt-2 animate-pulse"></div>
-            </div>
-          </div>
+
         </div>
       </section>
 

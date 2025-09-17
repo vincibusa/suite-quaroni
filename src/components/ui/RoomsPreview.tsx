@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import Button from "./Button";
@@ -21,6 +21,14 @@ interface RoomsPreviewProps {
 
 export default function RoomsPreview({ rooms }: RoomsPreviewProps) {
   const [currentSlide, setCurrentSlide] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % rooms.length);
+    }, 3000);
+    
+    return () => clearInterval(interval);
+  }, [rooms.length]);
 
   const nextSlide = () => {
     setCurrentSlide((prev) => (prev + 1) % rooms.length);
@@ -43,7 +51,7 @@ export default function RoomsPreview({ rooms }: RoomsPreviewProps) {
           style={{ transform: `translateX(-${currentSlide * 100}%)` }}
         >
           {rooms.map((room) => (
-            <div key={room.id} className="w-full flex-shrink-0">
+            <Link key={room.id} href={`/rooms/${room.slug}`} className="block cursor-pointer w-full flex-shrink-0">
               <div className="relative h-[500px] group">
                 {/* Room Image */}
                 <Image
@@ -80,51 +88,25 @@ export default function RoomsPreview({ rooms }: RoomsPreviewProps) {
                     </div>
                     
                     {/* Price and CTA */}
-                    <div className="flex items-center justify-between">
+                    <div className="pb-4">
                       <div className="space-y-1">
                         <div className="text-2xl font-bold">€{room.price}</div>
                         <div className="text-gray-300 text-sm">per night</div>
-                      </div>
-                      <div className="flex gap-3">
-                        <Link href={`/rooms/${room.slug}`}>
-                          <Button variant="secondary" className="text-black border-white hover:bg-white hover:text-black">
-                            View Details
-                          </Button>
-                        </Link>
-                        <Link href={`/rooms/${room.slug}#booking`}>
-                          <Button variant="primary" className="gradient-button">
-                            Book Now
-                          </Button>
-                        </Link>
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
-            </div>
+            </Link>
           ))}
         </div>
       </div>
 
-      {/* Navigation Arrows */}
-      <button
-        onClick={prevSlide}
-        className="absolute left-4 top-1/2 -translate-y-1/2 z-10 w-12 h-12 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center text-white hover:bg-white/30 transition-all"
-      >
-        <span className="material-symbols-outlined">chevron_left</span>
-      </button>
-      
-      <button
-        onClick={nextSlide}
-        className="absolute right-4 top-1/2 -translate-y-1/2 z-10 w-12 h-12 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center text-white hover:bg-white/30 transition-all"
-      >
-        <span className="material-symbols-outlined">chevron_right</span>
-      </button>
 
       {/* Dots Indicator */}
       <div className="flex justify-center mt-6 space-x-2">
         {rooms.map((_, index) => (
-          <button
+          <Button
             key={index}
             onClick={() => goToSlide(index)}
             className={`w-3 h-3 rounded-full transition-all ${

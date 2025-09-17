@@ -62,25 +62,25 @@ export default function RoomFilters({ onFilterChange, totalResults }: RoomFilter
   };
 
   return (
-    <div className="bg-white/95 backdrop-blur-sm rounded-2xl shadow-lg border border-gray-200 sticky top-24 z-40">
+    <div className="bg-white/95 backdrop-blur-sm rounded-xl md:rounded-2xl shadow-lg border border-gray-200 sticky top-20 md:top-24 z-40">
       {/* Mobile Filter Toggle */}
-      <div className="md:hidden p-4 border-b border-gray-200">
+      <div className="md:hidden p-3 md:p-4 border-b border-gray-200">
         <button
           onClick={() => setIsOpen(!isOpen)}
-          className="w-full flex items-center justify-between text-left"
+          className="w-full flex items-center justify-between text-left touch-manipulation"
         >
           <div>
-            <span className="font-semibold text-text-primary">Filter & Search</span>
-            <span className="block text-sm text-text-secondary">{totalResults} rooms found</span>
+            <span className="font-semibold text-text-primary text-sm md:text-base">Filter & Search</span>
+            <span className="block text-xs md:text-sm text-text-secondary">{totalResults} rooms found</span>
           </div>
-          <span className="material-symbols-outlined">
+          <span className="material-symbols-outlined text-lg">
             {isOpen ? 'expand_less' : 'expand_more'}
           </span>
         </button>
       </div>
 
       {/* Filter Content */}
-      <div className={`p-6 space-y-6 ${isOpen ? 'block' : 'hidden md:block'}`}>
+      <div className={`p-4 md:p-6 space-y-4 md:space-y-6 ${isOpen ? 'block' : 'hidden md:block'}`}>
         {/* Search Bar */}
         <div className="space-y-2">
           <label className="text-sm font-semibold text-text-primary">Search Rooms</label>

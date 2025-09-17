@@ -78,7 +78,7 @@ export default function Home() {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center fade-in-up-delay-2">
               <Link href="/rooms">
-                <button className="group gradient-button px-8 py-4 text-lg font-bold text-white rounded-full shadow-2xl hover:shadow-3xl transition-all transform hover:scale-105 flex items-center gap-2">
+                <button className="group gradient-button px-8 py-4 text-lg font-bold text-white rounded-full shadow-2xl hover:shadow-3xl transition-all transform hover:scale-105 flex items-center gap-2 min-w-[280px]">
                   Book Your Stay Now
                   <span className="material-symbols-outlined transition-transform group-hover:translate-x-1">
                     arrow_forward
@@ -86,7 +86,7 @@ export default function Home() {
                 </button>
               </Link>
               <Link href="/discover">
-                <button className="px-8 py-4 text-lg font-semibold text-white border-2 border-white/30 backdrop-blur-sm rounded-full hover:bg-white/10 transition-all">
+                <button className="px-8 py-4 text-lg font-semibold text-white border-2 border-white/30 backdrop-blur-sm rounded-full hover:bg-white/10 transition-all min-w-[280px]">
                   Explore Palermo
                 </button>
               </Link>
@@ -156,12 +156,12 @@ export default function Home() {
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
                 <Link href="/discover">
-                  <button className="px-6 py-3 bg-primary text-white font-semibold rounded-xl hover:bg-opacity-90 transition-all">
+                  <button className="px-6 py-3 bg-primary text-white font-semibold rounded-xl hover:bg-opacity-90 transition-all min-w-[200px]">
                     Explore Palermo
                   </button>
                 </Link>
                 <Link href="/experiences">
-                  <button className="px-6 py-3 border-2 border-primary text-primary font-semibold rounded-xl hover:bg-primary/10 transition-all">
+                  <button className="px-6 py-3 border-2 border-primary text-primary font-semibold rounded-xl hover:bg-primary/10 transition-all min-w-[200px]">
                     Local Experiences
                   </button>
                 </Link>
@@ -371,59 +371,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Newsletter & Final CTA Section */}
-      <section className="py-24 bg-gradient-to-br from-slate-900 via-blue-900 to-slate-900 text-white relative overflow-hidden">
-        <div className="absolute inset-0 bg-dot-pattern opacity-20"></div>
-        <div className="container mx-auto px-6 relative z-10">
-          <div className="max-w-4xl mx-auto text-center">
-            <h2 className="text-4xl md:text-6xl font-bold mb-6 leading-tight">
-              Ready for Your
-              <span className="block text-gradient bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-cyan-300">
-                Sicilian Adventure?
-              </span>
-            </h2>
-            <p className="text-xl text-gray-300 mb-12 leading-relaxed max-w-2xl mx-auto">
-              Join our newsletter for exclusive offers, local insider tips, and be the first to know about special packages at Suite Quaroni.
-            </p>
-            
-            {/* Newsletter Signup */}
-            <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-8 mb-12 max-w-2xl mx-auto">
-              <div className="flex flex-col sm:flex-row gap-4">
-                <input 
-                  type="email" 
-                  placeholder="Enter your email address"
-                  className="flex-1 px-6 py-4 bg-white/10 border border-white/20 rounded-xl text-white placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent"
-                />
-                <button className="gradient-button px-8 py-4 font-semibold rounded-xl transition-all transform hover:scale-105 flex items-center justify-center gap-2">
-                  Subscribe
-                  <span className="material-symbols-outlined">mail</span>
-                </button>
-              </div>
-              <p className="text-gray-400 text-sm mt-4">
-                🎁 Get 10% off your first booking when you subscribe
-              </p>
-            </div>
 
-            {/* Final CTAs */}
-            <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
-              <Link href="/rooms">
-                <button className="group gradient-button px-10 py-5 text-xl font-bold rounded-full shadow-2xl transition-all transform hover:scale-105 flex items-center gap-3">
-                  Book Your Stay
-                  <span className="material-symbols-outlined transition-transform group-hover:translate-x-1">
-                    arrow_forward
-                  </span>
-                </button>
-              </Link>
-              <Link href="/contact">
-                <button className="px-10 py-5 text-xl font-semibold border-2 border-white/30 backdrop-blur-sm rounded-full hover:bg-white/10 transition-all flex items-center gap-3">
-                  <span className="material-symbols-outlined">chat</span>
-                  Contact Us
-                </button>
-              </Link>
-            </div>
-          </div>
-        </div>
-      </section>
     </>
   );
 }

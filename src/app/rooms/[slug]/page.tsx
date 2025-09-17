@@ -2,7 +2,6 @@ import { Metadata } from "next";
 import { notFound } from "next/navigation";
 import ImageGallery from "@/components/ui/ImageGallery";
 import BookingWidget from "@/components/booking/BookingWidget";
-import AmenityItem from "@/components/room/AmenityItem";
 import { roomStructuredData, breadcrumbStructuredData } from "@/lib/structured-data";
 
 // Mock data - in a real app this would come from a database
@@ -136,52 +135,112 @@ export default async function RoomDetailPage({ params }: PageProps) {
           __html: JSON.stringify(breadcrumbData),
         }}
       />
-      <div className="px-10 sm:px-20 md:px-40 flex flex-1 justify-center py-10">
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 max-w-7xl w-full">
-          {/* Left Column - Main Content */}
-          <div className="lg:col-span-2">
-            {/* Image Gallery */}
-            <ImageGallery 
-              images={room.images}
-              alt={room.name}
-              className="mb-8"
-            />
+      {/* Hero Section - Full Width Carousel */}
+      <section className="relative h-[60vh] w-full overflow-hidden">
+        <ImageGallery 
+          images={room.images}
+          alt={room.name}
+          className="h-full w-full object-cover "
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+        <div className="absolute bottom-10 left-10">
+          <h1 className="text-4xl md:text-5xl font-bold text-white mb-2">
+            {room.name}
+          </h1>
+          <p className="text-white/80 text-lg max-w-2xl">
+            {room.description}
+          </p>
+        </div>
+      </section>
 
-            {/* Room Details */}
-            <div className="mb-8">
-              <h1 className="text-3xl font-bold text-text-primary tracking-tight mb-4">
-                {room.name}
-              </h1>
-              <p className="text-text-secondary text-base leading-relaxed">
+      {/* Main Content Section */}
+      <div className="container mx-auto px-6 py-12">
+        
+        {/* Mobile - Amenities First */}
+        <div className="lg:hidden mb-8">
+          <h2 className="text-2xl font-bold text-text-primary mb-4">
+            Room <span className="text-gradient bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-cyan-400">Amenities</span>
+          </h2>
+          <div className="overflow-x-auto pb-4 -mx-3 px-3">
+            <div className="flex space-x-4 min-w-max">
+              {room.amenities.map((amenity, index) => (
+                <div 
+                  key={index}
+                  className="flex items-center gap-2 p-3 bg-blue-50 rounded-lg min-w-max flex-shrink-0"
+                >
+                  <span className="material-symbols-outlined text-lg text-blue-600">
+                    {amenity.icon}
+                  </span>
+                  <span className="text-text-primary text-sm font-medium">
+                    {amenity.label}
+                  </span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 max-w-7xl mx-auto">
+          
+          {/* Left Column - Description */}
+          <div className="lg:col-span-2">
+            
+            {/* Room Description */}
+            <div>
+              <h2 className="text-3xl font-bold text-text-primary mb-6">
+                About This <span className="text-gradient bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-cyan-400">Room</span>
+              </h2>
+              <p className="text-text-secondary text-lg leading-relaxed">
                 {room.description}
               </p>
             </div>
 
+            {/* Booking Widget (Desktop only) */}
+            <div className="mt-12 hidden lg:block">
+              <BookingWidget 
+                price={room.price}
+                roomName={room.name}
+              />
+            </div>
+
+          </div>
+
+          {/* Right Column - Amenities (Desktop only) */}
+          <div className="hidden lg:block lg:col-span-1">
+            
             {/* Amenities */}
             <div>
-              <h2 className="text-2xl font-bold text-text-primary tracking-tight mb-6">
-                Amenities
+              <h2 className="text-3xl font-bold text-text-primary mb-6">
+                Room <span className="text-gradient bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-cyan-400">Amenities</span>
               </h2>
-              <div className="grid grid-cols-2 md:grid-cols-3 gap-x-6 gap-y-4">
+              <div className="space-y-3">
                 {room.amenities.map((amenity, index) => (
-                  <AmenityItem 
+                  <div 
                     key={index}
-                    icon={amenity.icon}
-                    label={amenity.label}
-                  />
+                    className="flex items-center gap-3 p-3"
+                  >
+                    <span className="material-symbols-outlined text-xl text-blue-600 flex-shrink-0">
+                      {amenity.icon}
+                    </span>
+                    <span className="text-text-primary">
+                      {amenity.label}
+                    </span>
+                  </div>
                 ))}
               </div>
             </div>
-          </div>
 
-          {/* Right Column - Booking Widget */}
-          <div className="lg:col-span-1">
-            <BookingWidget 
-              price={room.price}
-              roomName={room.name}
-            />
           </div>
         </div>
+
+        {/* Booking Widget (Mobile only) */}
+        <div className="mt-12 lg:hidden">
+          <BookingWidget 
+            price={room.price}
+            roomName={room.name}
+          />
+        </div>
+
       </div>
     </>
   );

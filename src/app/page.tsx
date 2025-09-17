@@ -3,45 +3,33 @@ import Link from "next/link";
 import { hotelStructuredData } from "@/lib/structured-data";
 import CounterStats from "@/components/ui/CounterStats";
 import RoomsPreview from "@/components/ui/RoomsPreview";
+import { suiteQuaroniRooms } from "@/data/suite-quaroni-rooms";
 
-// Mock data for rooms preview
-const featuredRooms = [
-  {
-    id: "1",
-    name: "Teatro Massimo",
-    description: "A luxurious suite with a balcony overlooking the city, perfect for couples seeking romance and comfort.",
-    image: "https://lh3.googleusercontent.com/aida-public/AB6AXuDN5XuVzCEuEskOvORZg4YpA2rmUncJTCh1DJBpMPOnRgreoPph7GJMwCzPYg-0wSEf2ZCxM0h-hJl_dbhyioNJC8WfzEI1sjNdEgV1R47AjQJ-BoYSozQba-CcK3t4F3KXemx7EkkShdBs4F6OwhkF0bq87oo_Ouwv1gnX1axrJ1B5yQhk7skm3d-way-xnc_WvJAYx854y_iqsy54n7BbY7q8bs-Gyj_7TQiMc1mpiyglYeJr-UxCnh0MFgRQHqePrIBUPCV9oW-R",
-    price: 180,
-    slug: "teatro-massimo",
-    amenities: ["King-size bed", "Private balcony", "City views", "Free Wi-Fi"]
-  },
-  {
-    id: "2", 
-    name: "Cattedrale",
-    description: "A spacious room with a view of the historic cathedral, ideal for families and cultural enthusiasts.",
-    image: "https://lh3.googleusercontent.com/aida-public/AB6AXuCdGN6HM23hlvuAgaN7JVwnxe7k05TrgWTcXkzupOqE8PgWSzWjXuX-G5zMYzLQeRL27oJxW8TIfKGqsE0WovzG1TOQCOr7xUDSeT8g3nhkTPGnMS3bTZDt-QttFxxo7x8emhAQuUS-WDto0ZSOOuejZMgMR11V-hrmfT81yT_kCesj935jx25dq5e8Xw0utBfeGMRCxQm281BxQHeWJ_6hOtr7538EYPjcTP8oba4lLMvbjyeGDRn-Nl2YkqLKeuuMvlpHcbWl4uxe",
-    price: 160,
-    slug: "cattedrale",
-    amenities: ["Queen-size bed", "Cathedral views", "Family-friendly", "Work desk"]
-  },
-  {
-    id: "3",
-    name: "Palazzo dei Normanni", 
-    description: "An elegant room with a private terrace, offering a tranquil retreat in the heart of the city.",
-    image: "https://lh3.googleusercontent.com/aida-public/AB6AXuAhv8SeezH-MXEgSK-wPODlw5uDGRPhEo3BKpRgT__etyGH5PigdBmwlFykjfrvH13HmHupRxDF_qb3KFH27QE-2AwPGuYCQKmV1-RSVNeVIAjsjzwusIv-NS9WdqX8NJy2-XBgVnGx7YYxO2MJS4UluSowYDeQr1-De6hWL5--hTb6oPs_4vYhso7gnEAcb0ou0HJSRHES7zoBoWgvrSZmxwdD62Etil6OZXEiQxxS_PrjDheDBWf95BmYPx2T-0lA2HayGg-t6gmZ",
-    price: 200,
-    slug: "palazzo-dei-normanni",
-    amenities: ["King-size bed", "Private terrace", "Garden views", "Luxury bathroom"]
-  }
-];
+// Tutte le 6 camere autentiche Suite Quaroni per l'homepage
+const featuredRooms = suiteQuaroniRooms.map(room => ({
+  id: room.id,
+  name: room.name,
+  description: room.shortDescription,
+  image: room.images[0],
+  price: room.price,
+  slug: room.slug,
+  amenities: room.features.slice(0, 4)
+}));
  
-const heroBackground = "https://lh3.googleusercontent.com/aida-public/AB6AXuD7pg-7TsuO_BE07_1U-tE08RdPhxZqsTNpE2UgdjOe6Yn-qk_svcWdgPaCYkpSWE4VCOmcBWjVZ37K5hT7jksHCXRnYKp0x-YJ5rsH_LAojfjj2pjKSZPPUbRPyBsVhjmcGewRznStg-16OIHxAlS5XDUMI9XagcaH3ksTDhKm-1Hk_62UJyGXnLQUuFhL61Co2qwk6J1LlJLRxevT0BSmnjKwL4-2a4wSl9budZ9CVXFFlp6C6kfNhyVcUnIBAmQMcA7qH3TWPJ4J";
+const heroImages = [
+  "/images/slideshow/suite-quaroni-slide-04.jpg",
+  "/images/slideshow/suite-quaroni-slide-05.jpg", 
+  "/images/slideshow/suite-quaroni-slide-06.jpg",
+  "/images/slideshow/suite-quaroni-slide-07.jpg"
+];
+
+const heroBackground = heroImages[0]; // Default fallback
  
 const stats = [
-  { number: 1200, label: "Happy Guests", suffix: "+" },
-  { number: 98, label: "Satisfaction Rate", suffix: "%" },
-  { number: 5, label: "Years Experience", suffix: "+" },
-  { number: 24, label: "Support Available", suffix: "/7" }
+  { number: 124, label: "TripAdvisor Reviews", suffix: "+" },
+  { number: 10, label: "Top Hotels Globally", suffix: "%" },
+  { number: 6, label: "Boutique Rooms", suffix: "" },
+  { number: 2022, label: "Traveler's Choice", suffix: "" }
 ];
 
 export default function Home() {
@@ -68,13 +56,13 @@ export default function Home() {
         <div className="relative z-10 flex h-full flex-col items-center justify-center text-center text-white px-4">
           <div className="max-w-4xl mx-auto space-y-6">
             <h1 className="text-6xl md:text-8xl font-extrabold leading-tight tracking-tighter fade-in-up">
-              Your Sicilian
+              B&B Suite Quaroni
               <span className="block text-gradient bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-cyan-300">
-                Escape Awaits
+                Historical City Center
               </span>
             </h1>
             <p className="max-w-2xl mx-auto text-xl md:text-2xl font-light leading-relaxed fade-in-up-delay-1">
-              Experience the charm of Palermo in our elegant B&B. Where modern luxury meets timeless Sicilian hospitality.
+              A boutique B&B in the historical center of Palermo. Where modern comfort meets authentic Sicilian hospitality in the heart of UNESCO World Heritage city.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center fade-in-up-delay-2">
               <Link href="/rooms">
@@ -106,7 +94,7 @@ export default function Home() {
               Trusted by Travelers Worldwide
             </h2>
             <p className="text-blue-100 text-lg max-w-2xl mx-auto">
-              Join thousands of satisfied guests who have made Suite Quaroni their home in Palermo
+              Proud recipients of TripAdvisor's Traveler's Choice Award 2022, recognized among the top 10% of hotels worldwide
             </p>
           </div>
           <CounterStats stats={stats} />
@@ -121,7 +109,7 @@ export default function Home() {
               Discover Our Exquisite Rooms
             </h2>
             <p className="text-text-secondary text-xl max-w-3xl mx-auto leading-relaxed">
-              Each room at Suite Quaroni is thoughtfully designed to capture the essence of Palermo while providing modern luxury and comfort for an unforgettable stay.
+              Each of our 6 boutique rooms is named and designed after a historic landmark in Palermo. The minimalistic elegant furnishings create bright and quiet environments, with carefully selected beds and sound-proofing for quality sleep.
             </p>
           </div>
           <RoomsPreview rooms={featuredRooms} />
@@ -149,10 +137,10 @@ export default function Home() {
                 </span>
               </h2>
               <p className="text-text-secondary text-lg leading-relaxed">
-                Nestled in the vibrant heart of Palermo, Suite Quaroni offers a unique blend of modern comfort and timeless Sicilian style. Our rooms are designed to be your relaxing retreat after a day of exploring the city's wonders.
+                Suite Quaroni is a modern and comfortable boutique B&B located in the city center of Via Maqueda, inside the walls of the historical Palazzo Quaroni, designed by the Roman architect Ludovico Quaroni. We are at walking distance from the opera house Teatro Massimo and Palermo Central Station.
               </p>
               <p className="text-text-secondary text-lg leading-relaxed">
-                We are committed to providing exceptional service and ensuring a memorable stay for every guest, combining authentic Sicilian hospitality with contemporary luxury.
+                Palermo's main monuments and attractions, as well as the historical markets, can be reached on foot within minutes. The B&B has 6 boutique rooms, each named and designed after a historic landmark in the city of Palermo, with minimalistic elegant furnishings creating a bright and quiet environment.
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
                 <Link href="/discover">
@@ -170,8 +158,8 @@ export default function Home() {
             <div className="relative">
               <div className="floating-animation">
                 <Image 
-                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuAwGd5QJaNRdk0n9fUC9swrAHk3Y3lX9eUzPvy-ATqutNHb2kMAAcLPTYuNieR5UHOYkfW6L9-QTuNVfJFUavLnWFsTh_VZkooCu42FsROsAredS9cNMhkxUb2tviQDBMNvltPdLhjQWStF0vb88Yi_ysIgw-2JEpyJDLdesa64trSGceH4m01mM4e7GPpnXmmB_fwVD2LDud61hvU6XghNmyG09qPI22eNcOro6We6ScTzsVDXuJkDXVEACBXC_5jb1sioCVeC_g6C"
-                  alt="Palermo Cathedral"
+                  src="/images/interior/suite-quaroni-design-box-home.jpg"
+                  alt="Suite Quaroni B&B Design - Historical Center Palermo"
                   width={500}
                   height={400}
                   className="rounded-2xl shadow-2xl"
@@ -193,7 +181,7 @@ export default function Home() {
               Why Book <span className="text-gradient bg-clip-text text-transparent">Directly</span> With Us?
             </h2>
             <p className="text-text-secondary text-xl max-w-3xl mx-auto leading-relaxed">
-              Enjoy exclusive perks and our undivided attention when you reserve your room through our website. Join over 1000+ satisfied guests who chose the direct booking advantage.
+              Book directly from our website with the best rate guaranteed! Experience the personalized service that makes Suite Quaroni special. We also offer convenient private garage parking in the heart of Palermo's historical center.
             </p>
           </div>
           
@@ -208,7 +196,7 @@ export default function Home() {
                   </div>
                   <h3 className="text-2xl font-bold text-text-primary mb-4">Best Price Guarantee</h3>
                   <p className="text-text-secondary leading-relaxed">
-                    We promise you won't find a better price for our rooms anywhere else. Price match guaranteed with instant confirmation.
+                    Book directly from our website with the best rate guaranteed! We promise you won't find a better price for our rooms anywhere else.
                   </p>
                   <div className="mt-6 flex items-center justify-center space-x-2 text-sm text-primary font-semibold">
                     <span>Instant Match</span>
@@ -248,7 +236,7 @@ export default function Home() {
                   </div>
                   <h3 className="text-2xl font-bold text-text-primary mb-4">Personalized Service</h3>
                   <p className="text-text-secondary leading-relaxed">
-                    From local tips to special requests, our team is here to make your stay perfect. Direct communication with our concierge team.
+                    Experience authentic Sicilian hospitality with personalized local recommendations. We also offer private garage parking and car rental drop-off services in the historical center.
                   </p>
                   <div className="mt-6 flex items-center justify-center space-x-2 text-sm text-purple-600 font-semibold">
                     <span>24/7 Support</span>
@@ -267,7 +255,7 @@ export default function Home() {
                   <div key={i} className="w-8 h-8 bg-gradient-to-br from-blue-400 to-purple-500 rounded-full border-2 border-white"></div>
                 ))}
               </div>
-              <span className="text-text-primary font-semibold">Join 1000+ happy guests</span>
+              <span className="text-text-primary font-semibold">TripAdvisor Traveler's Choice 2022</span>
               <div className="flex text-yellow-400">
                 {[1,2,3,4,5].map((i) => (
                   <span key={i} className="material-symbols-outlined text-sm">star</span>
@@ -309,10 +297,10 @@ export default function Home() {
                   </div>
                   <div className="flex-1 text-center md:text-left">
                     <h3 className="text-2xl font-bold text-text-primary mb-3">
-                      Tripadvisor Traveler's Choice 2022
+                      TripAdvisor Traveler's Choice Award 2022
                     </h3>
                     <p className="text-text-secondary leading-relaxed mb-4">
-                      Awarded for consistently earning great reviews from travelers and being ranked within the top 10% of properties on Tripadvisor.
+                      Pride and proud to have received this important award and be part of the 10% of the best hotels in the world. Thanks TripAdvisor! This recognition reflects our commitment to exceptional hospitality in Palermo's historic center.
                     </p>
                     <div className="flex items-center justify-center md:justify-start space-x-1">
                       {[1,2,3,4,5].map((i) => (
@@ -333,15 +321,15 @@ export default function Home() {
                 </div>
                 <div className="space-y-4">
                   <p className="text-text-primary text-lg font-medium italic leading-relaxed">
-                    "Exceptional hospitality and beautiful rooms in the heart of Palermo. The personalized service made our stay unforgettable. Suite Quaroni truly captures the essence of Sicilian warmth."
+                    "Suite Quaroni is the perfect starting point to explore Palermo on foot. The sound-proofed rooms provided quality sleep after exploring the UNESCO World Heritage sites. The location on Via Maqueda puts you minutes away from Teatro Massimo and the historical markets."
                   </p>
                   <div className="flex items-center space-x-4">
                     <div className="w-12 h-12 bg-gradient-to-br from-purple-400 to-pink-500 rounded-full flex items-center justify-center text-white font-bold">
                       MR
                     </div>
                     <div>
-                      <div className="font-semibold text-text-primary">Marco Rossi</div>
-                      <div className="text-text-secondary text-sm">Milan, Italy</div>
+                      <div className="font-semibold text-text-primary">Giuseppe Palermo</div>
+                      <div className="text-text-secondary text-sm">Roma, Italy</div>
                     </div>
                     <div className="ml-auto flex text-yellow-400">
                       {[1,2,3,4,5].map((i) => (
@@ -354,16 +342,16 @@ export default function Home() {
               
               <div className="grid grid-cols-3 gap-4 text-center">
                 <div className="space-y-1">
-                  <div className="text-2xl font-bold text-primary">124</div>
-                  <div className="text-sm text-text-secondary">Reviews</div>
+                  <div className="text-2xl font-bold text-primary">6</div>
+                  <div className="text-sm text-text-secondary">Boutique Rooms</div>
                 </div>
                 <div className="space-y-1">
-                  <div className="text-2xl font-bold text-primary">10%</div>
-                  <div className="text-sm text-text-secondary">Top Hotels</div>
+                  <div className="text-2xl font-bold text-primary">Via Maqueda</div>
+                  <div className="text-sm text-text-secondary">Historic Location</div>
                 </div>
                 <div className="space-y-1">
-                  <div className="text-2xl font-bold text-primary">2022</div>
-                  <div className="text-sm text-text-secondary">Award Year</div>
+                  <div className="text-2xl font-bold text-primary">UNESCO</div>
+                  <div className="text-sm text-text-secondary">World Heritage</div>
                 </div>
               </div>
             </div>

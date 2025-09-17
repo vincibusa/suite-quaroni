@@ -3,53 +3,9 @@
 import Link from "next/link";
 import RoomCard from "@/components/room/RoomCard";
 import GuestReviews from "@/components/ui/GuestReviews";
+import { suiteQuaroniRooms } from "@/data/suite-quaroni-rooms";
 
-interface Room {
-  id: string;
-  name: string;
-  description: string;
-  image: string;
-  price: number;
-  slug: string;
-  amenities: string[];
-  popular?: boolean;
-  size: number;
-}
 
-// Enhanced room data with amenities
-const rooms: Room[] = [
-  {
-    id: "1",
-    name: "Teatro Massimo",
-    description: "A luxurious suite with a balcony overlooking the city, perfect for couples seeking romance and comfort.",
-    image: "https://lh3.googleusercontent.com/aida-public/AB6AXuDN5XuVzCEuEskOvORZg4YpA2rmUncJTCh1DJBpMPOnRgreoPph7GJMwCzPYg-0wSEf2ZCxM0h-hJl_dbhyioNJC8WfzEI1sjNdEgV1R47AjQJ-BoYSozQba-CcK3t4F3KXemx7EkkShdBs4F6OwhkF0bq87oo_Ouwv1gnX1axrJ1B5yQhk7skm3d-way-xnc_WvJAYx854y_iqsy54n7BbY7q8bs-Gyj_7TQiMc1mpiyglYeJr-UxCnh0MFgRQHqePrIBUPCV9oW-R",
-    price: 180,
-    slug: "teatro-massimo",
-    amenities: ["King-size bed", "Private balcony", "City views", "Free Wi-Fi", "Work desk"],
-    popular: true,
-    size: 35
-  },
-  {
-    id: "2", 
-    name: "Cattedrale",
-    description: "A spacious room with a view of the historic cathedral, ideal for families and cultural enthusiasts.",
-    image: "https://lh3.googleusercontent.com/aida-public/AB6AXuCdGN6HM23hlvuAgaN7JVwnxe7k05TrgWTcXkzupOqE8PgWSzWjXuX-G5zMYzLQeRL27oJxW8TIfKGqsE0WovzG1TOQCOr7xUDSeT8g3nhkTPGnMS3bTZDt-QttFxxo7x8emhAQuUS-WDto0ZSOOuejZMgMR11V-hrmfT81yT_kCesj935jx25dq5e8Xw0utBfeGMRCxQm281BxQHeWJ_6hOtr7538EYPjcTP8oba4lLMvbjyeGDRn-Nl2YkqLKeuuMvlpHcbWl4uxe",
-    price: 160,
-    slug: "cattedrale",
-    amenities: ["Queen-size bed", "Cathedral views", "Family-friendly", "Work desk", "Free Wi-Fi"],
-    size: 28
-  },
-  {
-    id: "3",
-    name: "Palazzo dei Normanni", 
-    description: "An elegant room with a private terrace, offering a tranquil retreat in the heart of the city.",
-    image: "https://lh3.googleusercontent.com/aida-public/AB6AXuAhv8SeezH-MXEgSK-wPODlw5uDGRPhEo3BKpRgT__etyGH5PigdBmwlFykjfrvH13HmHupRxDF_qb3KFH27QE-2AwPGuYCQKmV1-RSVNeVIAjsjzwusIv-NS9WdqX8NJy2-XBgVnGx7YYxO2MJS4UluSowYDeQr1-De6hWL5--hTb6oPs_4vYhso7gnEAcb0ou0HJSRHES7zoBoWgvrSZmxwdD62Etil6OZXEiQxxS_PrjDheDBWf95BmYPx2T-0lA2HayGg-t6gmZ",
-    price: 200,
-    slug: "palazzo-dei-normanni",
-    amenities: ["King-size bed", "Private terrace", "Garden views", "Luxury bathroom", "Free Wi-Fi"],
-    size: 42
-  }
-];
 
 export default function RoomsPageClient() {
 
@@ -88,7 +44,7 @@ export default function RoomsPageClient() {
             <div className="flex flex-col space-y-3 sm:flex-row sm:space-y-0 sm:space-x-4 md:space-x-8 items-center justify-center mt-6 md:mt-8 fade-in-up-delay-2">
               <div className="flex items-center space-x-2">
                 <span className="material-symbols-outlined text-blue-400 text-lg">bed</span>
-                <span className="font-semibold text-sm md:text-base">3 Unique Rooms</span>
+                <span className="font-semibold text-sm md:text-base">6 Boutique Rooms</span>
               </div>
               <div className="flex items-center space-x-2">
                 <span className="material-symbols-outlined text-green-400 text-lg">eco</span>
@@ -114,7 +70,7 @@ export default function RoomsPageClient() {
               Our Exquisite Rooms
             </h2>
             <p className="text-text-secondary text-base md:text-lg max-w-2xl mx-auto leading-relaxed">
-              Choose from our carefully curated selection of luxury accommodations, each inspired by Palermo's most iconic landmarks.
+              Scopri le nostre 6 camere boutique, ognuna dedicata a un monumento storico di Palermo. Ogni camera racconta una storia unica della città UNESCO.
             </p>
             <div className="flex items-center justify-center space-x-4 text-xs md:text-sm text-text-secondary mt-4">
               <span className="flex items-center space-x-1">
@@ -130,13 +86,13 @@ export default function RoomsPageClient() {
 
           {/* Rooms Grid - Centered */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 max-w-7xl mx-auto">
-            {rooms.map((room, index) => (
+            {suiteQuaroniRooms.map((room, index) => (
               <div key={room.id} className="fade-in-up w-full" style={{animationDelay: `${index * 0.1}s`}}>
                 <RoomCard
                   id={room.id}
                   name={room.name}
-                  description={room.description}
-                  image={room.image}
+                  description={room.shortDescription}
+                  image={room.images[0]}
                   price={room.price}
                   slug={room.slug}
                 />
@@ -144,7 +100,7 @@ export default function RoomsPageClient() {
                   <div className="relative -mt-3 md:-mt-4 mb-3 md:mb-4">
                     <div className="bg-gradient-to-r from-yellow-400 to-orange-500 text-white text-xs font-bold px-2 md:px-3 py-1 rounded-full inline-flex items-center space-x-1">
                       <span className="material-symbols-outlined text-xs">trending_up</span>
-                      <span>Most Popular</span>
+                      <span>Più Popolare</span>
                     </div>
                   </div>
                 )}
@@ -167,7 +123,7 @@ export default function RoomsPageClient() {
                     Contact Us
                   </button>
                 </Link>
-                <a href="tel:+39021234567">
+                <a href="tel:+393276672987">
                   <button className="w-full sm:w-auto border border-primary text-primary px-4 md:px-6 py-2 md:py-3 rounded-xl font-semibold hover:bg-primary/10 transition-all text-sm md:text-base">
                     Call Now
                   </button>
@@ -203,7 +159,7 @@ export default function RoomsPageClient() {
                 <h3 className="font-bold text-base md:text-lg mb-2">Call Direct</h3>
                 <p className="text-gray-300 text-xs md:text-sm mb-3 md:mb-4">Speak with our team for personalized recommendations</p>
                 <a href="tel:+39021234567" className="text-blue-400 font-semibold hover:text-blue-300 transition-colors text-sm md:text-base">
-                  +39 02 123 4567
+                  +39 327 667 2987
                 </a>
               </div>
               
@@ -220,7 +176,7 @@ export default function RoomsPageClient() {
                 <span className="material-symbols-outlined text-3xl md:text-4xl text-purple-400 mb-3 md:mb-4 block">mail</span>
                 <h3 className="font-bold text-base md:text-lg mb-2">Email Us</h3>
                 <p className="text-gray-300 text-xs md:text-sm mb-3 md:mb-4">Detailed inquiries and special requests</p>
-                <a href="mailto:info@suitequaroni.com" className="text-purple-400 font-semibold hover:text-purple-300 transition-colors text-sm md:text-base">
+                <a href="mailto:info@suitequaroni.it" className="text-purple-400 font-semibold hover:text-purple-300 transition-colors text-sm md:text-base">
                   Send Email
                 </a>
               </div>
